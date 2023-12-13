@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    $(".buttonFileInput").on('click', function () {
+        $('#fileInput').click()
+    })
+
     $('#fileInput').on('change', function () {
         const imageDisplay = $('.imageDisplay')
 
@@ -13,7 +17,8 @@ $(document).ready(function () {
                     const fileInfo = $('<div class="file-info">'); // Div para el nombre del archivo
                     const fileName = $(`<p class="file-name">${file.name}</p>`) // Párrafo para mostrar el nombre del archivo
 
-                    const deleteButton = $('<button type="button" class="btn-close bg-danger" aria-label="Close"><span aria-hidden="true"></span></button>') // Botón para eliminar la imagen
+                    // Botón para eliminar la imagen
+                    const deleteButton = $('<button type="button" class="btn_close btn btn-danger bg-danger"><i class="bi bi-x-lg"></i></button>')
                     deleteButton.on('click', function () {
                         imgWrapper.remove()
                     })
