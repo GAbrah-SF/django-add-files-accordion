@@ -3,25 +3,48 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-    <h1 class="text-center">Carga de Documentos e Imagenes</h1>
+    <h1 class="text-center">Formulario de registro</h1>
+    <input type="hidden" class="url_guardar" value="{% url 'guardar' %}">
 
-    <div class="mt-5 bg-white p-4" style="border-radius: 15px;">
+    <div class="mt-4 bg-white p-4" style="border-radius: 15px;">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <h4 class="d-flex align-items-center me-2">Formulario:</h4>
+                    {% for number in form_numbers %}
+                        <input type="radio" class="btn-check" name="formulario" id="formulario{{ number }}"
+                               autocomplete="off" value="{{ number | add:1 }}" {% if number == 0 %}checked{% endif %}>
+                        <label class="btn btn-outline-morado" for="formulario{{ number }}">{{ number | add:1 }}</label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-2 d-flex justify-content-end">
+                <button type="button" class="btn btn-primary send_data disabled">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Div en donde se iteran los n formularios -->
+    <div class="mostrar_formulario" style="border-radius: 15px;"></div>
+
+    <div class="mt-4 bg-white p-4" style="border-radius: 15px;">
         <div class="row">
             <div class="col-md-3 d-flex align-items-center">
                 <h5 class="">Imagenes Adjuntas</h5>
             </div>
             <div class="col-md-9 d-flex justify-content-end">
                 <input type="file" id="fileInput" multiple style="display: none;" accept="image/*">
-                <button class="btn btn-primary buttonFileInput">Adjuntar Imagenes</button>
+                <button class="btn btn-bd-morado buttonFileInput">Adjuntar Imagenes</button>
             </div>
         </div>
 
-        <div class="mt-5 accordion accordion-flush" id="accordionFlushExample">
+        <div class="mt-4 accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseOne" aria-expanded="false"
-                            aria-controls="flush-collapseOne">Archivos adjuntos</button>
+                            data-bs-target="#flush-collapseOne" aria-expanded="false" id="show_images"
+                            aria-controls="flush-collapseOne">Archivos adjuntos
+                    </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" style="background-color: #eeeeee"
                      data-bs-parent="#accordionFlushExample">
@@ -32,9 +55,11 @@
             </div>
         </div>
     </div>
-    
 {% endblock %}
 
 {% block js %}
+    <script src="{% static 'js/add_forms.js' %}"></script>
+    <script src="{% static 'js/form_validate.js' %}"></script>
+    <script src="{% static 'js/create_object.js' %}"></script>
     <script src="{% static 'js/add_images.js' %}"></script>
 {% endblock %}

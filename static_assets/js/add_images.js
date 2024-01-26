@@ -6,7 +6,7 @@ $(document).ready(function () {
     $('#fileInput').on('change', function () {
         const imageDisplay = $('.imageDisplay')
 
-        const files = this.files;
+        const files = this.files
         for (let i = 0; i < files.length; i++) {
             const file = files[i]
             if (file.type.startsWith('image/')) {
@@ -32,5 +32,6 @@ $(document).ready(function () {
                 reader.readAsDataURL(file)
             }
         }
+        $("#show_images").click()
     })
 })
