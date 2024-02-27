@@ -1,7 +1,8 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import ClienteSerializer
+from .serializers import ClienteSerializer, SolicitudSerializer
+from files.models import Solicitud
 
 
 class CreateCliente(APIView):
@@ -17,3 +18,15 @@ class CreateCliente(APIView):
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST,
                             data={"icon": "error", "message": f"Error al recibir datos"})
+
+
+class ObtenerSolicitud(APIView):
+    def get(self, request):
+        # Obtener todas las solicitudes de la base de datos
+        solicitudes = Solicitud.objects.all()
+
+        # Serializar los datos
+        serializer = SolicitudSerializer(solicitudes, many=True)
+
+        # Devolver los datos serializados en la respuesta
+        return Response(serializer.data)

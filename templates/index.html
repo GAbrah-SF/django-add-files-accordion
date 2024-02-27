@@ -19,10 +19,12 @@
                 </div>
             </div>
             <div class="col-md-2 d-flex justify-content-end">
-                <button type="button" class="btn btn-primary send_data disabled">Guardar</button>
+                <button type="button" class="btn btn-primary send_data ">Guardar</button>
             </div>
         </div>
     </div>
+
+    <input type="hidden" id="url_solicitud" value="{% url 'mostrar_solicitud' %}">
 
     <!-- Div en donde se iteran los n formularios -->
     <div class="mostrar_formulario" style="border-radius: 15px;"></div>

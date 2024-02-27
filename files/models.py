@@ -18,3 +18,8 @@ class Cliente(models.Model):
 
     def __unicode__(self):
         return f"{self.last_name} {self.first_name}"
+
+
+class Solicitud(models.Model):
+    Tipo_solicitud = models.CharField(max_length=50)
+

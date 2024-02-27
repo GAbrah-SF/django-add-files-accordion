@@ -4,5 +4,7 @@ django-crispy-forms
 django-bootstrap-v5
 django-filter
 djangorestframework
+openpyxl
+pandas
 Pillow
 psycopg2

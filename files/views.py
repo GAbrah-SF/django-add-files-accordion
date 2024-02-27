@@ -1,4 +1,5 @@
 from django.views.generic import TemplateView, FormView
+from .models import Solicitud
 
 
 class Index(FormView):
@@ -9,6 +10,7 @@ class Index(FormView):
         context_index = {
             'title': 'Nuevos Archivos',
             'form_numbers': [x for x in range(0, 6)],
+            'lista_solicitudes': Solicitud.objects.all()
         }
 
         return context_index
